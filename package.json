@@ -5,7 +5,7 @@
   "scripts": {
     "mm-tests": "newman run tests/MessageManager.postman_collection.json -e env/Beta_Keith.postman_environment.json --reporters cli,junit --reporter-junit-export newman_reports/newman.xml",
     "trigger-tests": "newman run tests/TriggerBroadcast.postman_collection.json -e env/Beta_Avanti.postman_environment.json --reporters cli,junit --reporter-junit-export newman_reports/newman.xml",
-    "ftp-tests": "newman run tests/FTP Project.postman_collection.json -e env/Beta_Avanti.postman_environment.json" 
+    "ftp-tests": "newman run tests/FTP Project.postman_collection.json -e env/Beta_Avanti.postman_environment.json"  
 
   },
   "author": "Joel Fogue",
