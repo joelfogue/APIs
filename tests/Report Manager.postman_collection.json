@@ -1,0 +1,2272 @@
+{
+	"info": {
+		"name": "Report Manager",
+		"_postman_id": "00140974-9665-06ad-b3d9-a6056f466fe0",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Blank Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9976d320-2cd6-4fef-81dc-dc3c8c2bf541",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:LinkAliasReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:LinkAliasReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActivityReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ActivityReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:ActivityReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ActivityReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ActivityReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:ActivityReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BounceReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:BounceReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:BounceReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BounceReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:BounceReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:BounceReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ComplaintReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ComplaintReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:ComplaintReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ComplaintReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ComplaintReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:ComplaintReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DownloadRequestedReport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:DownloadRequestedReport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:RequestID>?</tem:RequestID>\r\n      </tem:DownloadRequestedReport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "F2FReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:F2FReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:F2FReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "F2FReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:F2FReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:F2FReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetActivityDet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetActivityDet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetActivityDet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBCCounts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBCCounts>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetBCCounts>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBCCountsByFilter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBCCountsByFilter>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterGUID>?</tem:s_FilterGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterType>?</tem:s_FilterType>\r\n         <!--Optional:-->\r\n         <tem:s_FilterDescription>?</tem:s_FilterDescription>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterFolderID>?</tem:s_FilterFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_BroadcastID>?</tem:s_BroadcastID>\r\n      </tem:GetBCCountsByFilter>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBounceCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBounceCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetBounceCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBounceDet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBounceDet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetBounceDet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBounceDetByDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBounceDetByDate>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GetBounceDetByDate>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBounceDetBySender",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBounceDetBySender>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GetBounceDetBySender>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBroadcastsByDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetBroadcastsByDate>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GetBroadcastsByDate>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetContactActivityBcastReport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetContactActivityBcastReport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetContactActivityBcastReport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetContactActivityDetail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetContactActivityDetail>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:GetContactActivityDetail>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetContactActivityReport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetContactActivityReport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:GetContactActivityReport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetDMListData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetDMListData>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_XML>?</tem:s_XML>\r\n      </tem:GetDMListData>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GeteBJobsByDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GeteBJobsByDate>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GeteBJobsByDate>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEventsByDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetEventsByDate>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_ClientID>?</tem:s_ClientID>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GetEventsByDate>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHTMLCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetHTMLCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetHTMLCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetHTMLDet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetHTMLDet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetHTMLDet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetLinksTracked",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetLinksTracked>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetLinksTracked>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOODet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetOODet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetOODet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOptOffCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetOptOffCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetOptOffCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOptOffList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetOptOffList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n      </tem:GetOptOffList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetProcessedDet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetProcessedDet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetProcessedDet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportFileName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetReportFileName>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:RequestID>?</tem:RequestID>\r\n      </tem:GetReportFileName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportRequestDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetReportRequestDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:RequestID>?</tem:RequestID>\r\n      </tem:GetReportRequestDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportRequestStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetReportRequestStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:RequestID>?</tem:RequestID>\r\n      </tem:GetReportRequestStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSMTPBcastID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSMTPBcastID>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_appName>{{beta_account_id}}</tem:s_appName>\r\n         <!--Optional:-->\r\n         <tem:s_senderName>?</tem:s_senderName>\r\n         <!--Optional:-->\r\n         <tem:s_clientbcastid>?</tem:s_clientbcastid>\r\n      </tem:GetSMTPBcastID>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSMTPEventsByDate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSMTPEventsByDate>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>{{beta_account_id}}</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_ClientID>?</tem:s_ClientID>\r\n         <!--Optional:-->\r\n         <tem:s_StartDate>?</tem:s_StartDate>\r\n         <!--Optional:-->\r\n         <tem:s_EndDate>?</tem:s_EndDate>\r\n         <!--Optional:-->\r\n         <tem:s_ClientBcastID>?</tem:s_ClientBcastID>\r\n         <tem:i_ActionType>?</tem:i_ActionType>\r\n      </tem:GetSMTPEventsByDate>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetStandardBCCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetStandardBCCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetStandardBCCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTotalClicksCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetTotalClicksCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetTotalClicksCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrackCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetTrackCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetTrackCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTrackDet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetTrackDet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetTrackDet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUniqueClicksCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetUniqueClicksCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <tem:i_BcastID>?</tem:i_BcastID>\r\n      </tem:GetUniqueClicksCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkAliasReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:LinkAliasReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:LinkAliasReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LinkAliasReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:LinkAliasReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:LinkAliasReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OpenReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OpenReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:OpenReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OpenReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OpenReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:OpenReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OptoutReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OptoutReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:OptoutReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OptoutReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OptoutReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:OptoutReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawBounceDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawBounceDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawBounceDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawBounceDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawBounceDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawBounceDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawComplaintDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawComplaintDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawComplaintDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawComplaintDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawComplaintDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawComplaintDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawF2FDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawF2FDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawF2FDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawF2FDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawF2FDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawF2FDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawOpenDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawOpenDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawOpenDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawOpenDatatByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawOpenDatatByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawOpenDatatByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawOptoutDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawOptoutDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawOptoutDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawOptoutDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawOptoutDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawOptoutDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawSentDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawSentDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawSentDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawSentDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawSentDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawSentDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawSharingDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawSharingDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawSharingDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawSharingDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawSharingDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawSharingDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawTrackDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawTrackDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawTrackDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawTrackLinkDataByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawTrackLinkDataByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawTrackLinkDataByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawTrackLinkDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawTrackLinkDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawTrackLinkDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RawTracksDataByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:RawTracksDataByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:RawTracksDataByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SentReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:SentReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:SentReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SentReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:SentReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:SentReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SharingReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:SharingReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:SharingReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SharingReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:SharingReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:SharingReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestMe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TestMe>\r\n         <!--Optional:-->\r\n         <tem:s_AccountCode>?</tem:s_AccountCode>\r\n      </tem:TestMe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TestService",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TestService/>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrackLinkReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TrackLinkReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:TrackLinkReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrackLinkReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TrackLinkReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:TrackLinkReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrackReportByDateRange",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TrackReportByDateRange>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterStartDate>?</tem:s_FilterStartDate>\r\n         <!--Optional:-->\r\n         <tem:s_FilterEndDate>?</tem:s_FilterEndDate>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:TrackReportByDateRange>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TrackReportByRelativeTimeframe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TrackReportByRelativeTimeframe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{BETA_GUID_AUTO}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterAccount>{{beta_account_id}}</tem:s_FilterAccount>\r\n         <!--Optional:-->\r\n         <tem:s_FilterSender>?</tem:s_FilterSender>\r\n         <!--Optional:-->\r\n         <tem:s_FilterCampaignID>?</tem:s_FilterCampaignID>\r\n         <!--Optional:-->\r\n         <tem:s_RelativeTimeFrame>?</tem:s_RelativeTimeFrame>\r\n         <!--Optional:-->\r\n         <tem:LastXDays>?</tem:LastXDays>\r\n         <!--Optional:-->\r\n         <tem:s_broadcastID>?</tem:s_broadcastID>\r\n         <!--Optional:-->\r\n         <tem:s_FilterBy>?</tem:s_FilterBy>\r\n      </tem:TrackReportByRelativeTimeframe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/wsReporting/reporting.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"wsReporting",
+						"reporting.asmx"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

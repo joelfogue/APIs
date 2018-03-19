@@ -1,0 +1,816 @@
+{
+	"info": {
+		"name": "ContentManager",
+		"_postman_id": "6484ccf3-a520-4572-7a3f-c658809d1915",
+		"description": "Automated Tests for CM API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateFolder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:CreateFolder>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Folder_Name>?</con:s_Folder_Name>\r\n         <con:i_ParentFolderID>?</con:i_ParentFolderID>\r\n      </con:CreateFolder>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewHTMLContent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:CreateNewHTMLContent>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Content_Name>?</con:s_Content_Name>\r\n         <!--Optional:-->\r\n         <con:s_Content_HTML>?</con:s_Content_HTML>\r\n         <con:i_TargetFolderID>?</con:i_TargetFolderID>\r\n      </con:CreateNewHTMLContent>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emptyrequestTemplate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewHTMLContentFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:CreateNewHTMLContentFromFTP>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Content_Name>?</con:s_Content_Name>\r\n         <con:i_TargetFolderID>?</con:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <con:s_FileName>?</con:s_FileName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_URL>?</con:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <con:s_FTP_UName>?</con:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_PW>?</con:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <con:s_FTP_Path>?</con:s_FTP_Path>\r\n      </con:CreateNewHTMLContentFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewTextContent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:CreateNewTextContent>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Content_Name>?</con:s_Content_Name>\r\n         <!--Optional:-->\r\n         <con:s_Content_TEXT>?</con:s_Content_TEXT>\r\n         <con:i_TargetFolderID>?</con:i_TargetFolderID>\r\n      </con:CreateNewTextContent>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewTEXTContentFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:CreateNewTEXTContentFromFTP>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Content_Name>?</con:s_Content_Name>\r\n         <con:i_TargetFolderID>?</con:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <con:s_FileName>?</con:s_FileName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_URL>?</con:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <con:s_FTP_UName>?</con:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_PW>?</con:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <con:s_FTP_Path>?</con:s_FTP_Path>\r\n      </con:CreateNewTEXTContentFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetContentDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetContentDetails>\r\n         <con:ContentId>?</con:ContentId>\r\n      </con:GetContentDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetContentIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetContentIDsByName>\r\n         <!--Optional:-->\r\n         <con:ContentName>?</con:ContentName>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetContentIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderContent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFolderContent>\r\n         <con:FolderId>?</con:FolderId>\r\n         <!--Optional:-->\r\n         <con:UserId>?</con:UserId>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetFolderContent>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFolderDetails>\r\n         <con:FolderId>?</con:FolderId>\r\n      </con:GetFolderDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFolderIDsByName>\r\n         <!--Optional:-->\r\n         <con:UserId>?</con:UserId>\r\n         <!--Optional:-->\r\n         <con:FolderName>?</con:FolderName>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetFolderIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderTree",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFolderTree>\r\n         <!--Optional:-->\r\n         <con:UserId>?</con:UserId>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetFolderTree>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFormDetails>\r\n         <con:FormId>?</con:FormId>\r\n      </con:GetFormDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFormIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetFormIDsByName>\r\n         <!--Optional:-->\r\n         <con:FormName>?</con:FormName>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetFormIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetLayerDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetLayerDetails>\r\n         <con:ZoneId>?</con:ZoneId>\r\n         <con:LayerId>?</con:LayerId>\r\n      </con:GetLayerDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetLayersByZone",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetLayersByZone>\r\n         <con:ZoneId>?</con:ZoneId>\r\n      </con:GetLayersByZone>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "emptyrequestTemplate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetReferencedZones>\r\n         <con:ContentId>?</con:ContentId>\r\n      </con:GetReferencedZones>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetReferencedZones",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetReferencedZones>\r\n         <con:ContentId>?</con:ContentId>\r\n      </con:GetReferencedZones>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetResourceDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetResourceDetails>\r\n         <con:ResourceId>?</con:ResourceId>\r\n      </con:GetResourceDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetResourceIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetResourceIDsByName>\r\n         <!--Optional:-->\r\n         <con:ResourceName>?</con:ResourceName>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetResourceIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetZoneDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetZoneDetails>\r\n         <con:ZoneId>?</con:ZoneId>\r\n      </con:GetZoneDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetZoneIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:GetZoneIDsByName>\r\n         <!--Optional:-->\r\n         <con:ZoneName>?</con:ZoneName>\r\n         <con:AccountId>?</con:AccountId>\r\n      </con:GetZoneIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PublishContent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:PublishContent>\r\n         <con:FormId>?</con:FormId>\r\n      </con:PublishContent>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "TrackAllZoneLinks",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:TrackAllZoneLinks>\r\n         <con:ZoneID>?</con:ZoneID>\r\n         <!--Optional:-->\r\n         <con:UserGUID>?</con:UserGUID>\r\n      </con:TrackAllZoneLinks>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UploadNewResourceFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:UploadNewResourceFromFTP>\r\n         <!--Optional:-->\r\n         <con:s_UserGUID>?</con:s_UserGUID>\r\n         <con:i_account_ID>?</con:i_account_ID>\r\n         <!--Optional:-->\r\n         <con:s_Resource_Name>?</con:s_Resource_Name>\r\n         <!--Optional:-->\r\n         <con:s_Resource_Type>?</con:s_Resource_Type>\r\n         <con:i_TargetFolderID>?</con:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <con:s_FileName>?</con:s_FileName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_URL>?</con:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <con:s_FTP_UName>?</con:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_PW>?</con:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <con:s_FTP_Path>?</con:s_FTP_Path>\r\n      </con:UploadNewResourceFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UploadResourceToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:con=\"http://ConentManagerWs.smartsourceonline.com/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <con:UploadResourceToFTP>\r\n         <con:ResourceID>?</con:ResourceID>\r\n         <!--Optional:-->\r\n         <con:s_FTP_URL>?</con:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <con:s_FTP_UName>?</con:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <con:s_FTP_PW>?</con:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <con:s_FTP_Path>?</con:s_FTP_Path>\r\n      </con:UploadResourceToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ContentManager_WS/ContentManagerWebService.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ContentManager_WS",
+						"ContentManagerWebService.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

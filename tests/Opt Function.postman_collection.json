@@ -1,0 +1,134 @@
+{
+	"info": {
+		"name": "Opt Function",
+		"_postman_id": "d239b972-dd90-abfc-b308-1d36d4ef23ef",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Blank Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/optfunctions.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"optfunctions.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OptIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"https://ws.postfuture.net/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ws:OptIn>\r\n         <!--Optional:-->\r\n         <ws:s_UserGUID>?</ws:s_UserGUID>\r\n         <!--Optional:-->\r\n         <ws:s_Account>?</ws:s_Account>\r\n         <!--Optional:-->\r\n         <ws:s_Sender>?</ws:s_Sender>\r\n         <!--Optional:-->\r\n         <ws:Email>?</ws:Email>\r\n      </ws:OptIn>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/optfunctions.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"optfunctions.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OptOut",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"https://ws.postfuture.net/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ws:OptOut>\r\n         <!--Optional:-->\r\n         <ws:s_UserGUID>?</ws:s_UserGUID>\r\n         <!--Optional:-->\r\n         <ws:s_Account>?</ws:s_Account>\r\n         <!--Optional:-->\r\n         <ws:s_Sender>?</ws:s_Sender>\r\n         <!--Optional:-->\r\n         <ws:Email>?</ws:Email>\r\n      </ws:OptOut>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/optfunctions.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"optfunctions.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Resubscribe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:ws=\"https://ws.postfuture.net/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <ws:Resubscribe>\r\n         <!--Optional:-->\r\n         <ws:s_UserGUID>?</ws:s_UserGUID>\r\n         <!--Optional:-->\r\n         <ws:s_Account>?</ws:s_Account>\r\n         <ws:i_Sender>?</ws:i_Sender>\r\n         <!--Optional:-->\r\n         <ws:Email>?</ws:Email>\r\n         <!--Optional:-->\r\n         <ws:optindate>?</ws:optindate>\r\n         <!--Optional:-->\r\n         <ws:source>?</ws:source>\r\n      </ws:Resubscribe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/optfunctions.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"optfunctions.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

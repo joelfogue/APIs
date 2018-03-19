@@ -1,0 +1,165 @@
+{
+	"info": {
+		"name": "FTP Project",
+		"_postman_id": "e7d6a3ef-5ffd-8784-b7d9-6ba6b98ea6e4",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Blank Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/WS_SS_FTPManager/FTPRequest.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"WS_SS_FTPManager",
+						"FTPRequest.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AbortFTPRequest",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AbortFTPRequest>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:AbortFTPRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/WS_SS_FTPManager/FTPRequest.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"WS_SS_FTPManager",
+						"FTPRequest.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetALLFTPRequestDetailsByStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetALLFTPRequestDetailsByStatus>\r\n         <!--Optional:-->\r\n         <tem:s_Status>?</tem:s_Status>\r\n      </tem:GetALLFTPRequestDetailsByStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/WS_SS_FTPManager/FTPRequest.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"WS_SS_FTPManager",
+						"FTPRequest.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFTPRequestDetailsByID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetFTPRequestDetailsByID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:GetFTPRequestDetailsByID>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/WS_SS_FTPManager/FTPRequest.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"WS_SS_FTPManager",
+						"FTPRequest.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "TransferFileFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TransferFileFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_FTPServer>?</tem:s_FTPServer>\r\n         <!--Optional:-->\r\n         <tem:s_UserID>?</tem:s_UserID>\r\n         <!--Optional:-->\r\n         <tem:s_UserPWD>?</tem:s_UserPWD>\r\n         <!--Optional:-->\r\n         <tem:s_FTPFilePath>?</tem:s_FTPFilePath>\r\n         <!--Optional:-->\r\n         <tem:s_UNCPath>?</tem:s_UNCPath>\r\n      </tem:TransferFileFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/WS_SS_FTPManager/FTPRequest.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"WS_SS_FTPManager",
+						"FTPRequest.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

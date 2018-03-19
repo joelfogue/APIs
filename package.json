@@ -1,0 +1,13 @@
+{
+  "name": "qa.legacy.api.automated.tests",
+  "version": "1.0.0",
+  "description": "This project uses the newman CLI to run our legacy Postman API tests",
+  "scripts": {
+    "mm-tests": "newman run tests/MessageManager.postman_collection.json -e env/Beta_Keith.postman_environment.json --reporters cli,junit --reporter-junit-export newman_reports/newman.xml",
+    "trigger-tests": "newman run tests/TriggerBroadcast.postman_collection.json -e env/Beta_Avanti.postman_environment.json --reporters cli,junit --reporter-junit-export newman_reports/newman.xml"
+  },
+  "author": "Joel Fogue",
+  "dependencies": {
+    "newman": "^3.9.3"
+  }
+}

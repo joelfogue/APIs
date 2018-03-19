@@ -1,0 +1,638 @@
+{
+	"info": {
+		"name": "TriggerBroadcast",
+		"_postman_id": "dedbe2e4-453e-974d-1c78-447684d6d593",
+		"description": "A collection to store our TriggerBroadcast API calls.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "ChangeFieldToText",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5ab9aa84-05bf-4078-ada1-5a7ece31a254",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var ChangeFieldToTextResult=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"ChangeFieldToTextResponse\"][\"ChangeFieldToTextResult\"];",
+							"console.log(ChangeFieldToTextResult);",
+							"",
+							"",
+							"pm.test(\"ChangeFieldToTextResult is True\", function () {",
+							"       pm.expect(ChangeFieldToTextResult).to.eql(\"True\");  ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\r\nxmlns:tem=\"http://tempuri.org/\">\r\n<soapenv:Header/>\r\n<soapenv:Body>\r\n<tem:ChangeFieldToText>\r\n    <!--Optional:-->\r\n        <tem:key>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</tem:key>\r\n<!--Optional:-->\r\n<tem:field>fname</tem:field>\r\n     </tem:ChangeFieldToText>\r\n  </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRequestDetails",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "390ccd34-f41c-4cd2-8668-dfbbd697b3d0",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var RequestID=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"RequestID\"];",
+							"console.log(RequestID);",
+							"",
+							"var EncryptKey=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"EncryptKey\"];",
+							"console.log(EncryptKey);",
+							"",
+							"var BCastID=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"BCastID\"];",
+							"console.log(BCastID);",
+							"",
+							"var Status=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"Status\"];",
+							"console.log(Status);",
+							"",
+							"var Message=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"Message\"];",
+							"console.log(Message);",
+							"",
+							"var NumRecords=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"NumRecords\"];",
+							"console.log(NumRecords);",
+							"",
+							"var NumSuppressed=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"NumSuppressed\"];",
+							"console.log(NumSuppressed);",
+							"",
+							"var NumErrored=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"NumErrored\"];",
+							"console.log(NumErrored);",
+							"",
+							"var NumSent=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"NumSent\"];",
+							"console.log(NumSent);",
+							"",
+							"var OptOffCheck=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestDetailsResponse\"][\"GetRequestDetailsResult\"][\"ResultSet\"][\"Result\"][\"OptOffCheck\"];",
+							"console.log(OptOffCheck);",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:GetRequestDetails>\n         <!--Optional:-->\n         <tem:requestID>252238</tem:requestID>\n      </tem:GetRequestDetails>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetRequestStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4732f910-caac-484c-a795-cdca9ac7f755",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var GetRequestStatusResultDONE=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"GetRequestStatusResponse\"][\"GetRequestStatusResult\"];",
+							"console.log(GetRequestStatusResultDONE);",
+							"",
+							"pm.test(\"GetRequestStatusResult is DONE\", function () {",
+							"       pm.expect(GetRequestStatusResultDONE).to.eql(\"DONE\");  ",
+							"});",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "766c2cb8-46ae-4b97-9a59-5d9e73030afa",
+						"type": "text/javascript",
+						"exec": [
+							"//have a doubt for this call as initially it says New and then changes to Done//"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:GetRequestStatus>\n         <!--Optional:-->\n         <tem:requestID>252239</tem:requestID>\n      </tem:GetRequestStatus>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewCustomXMLTriggerRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0549e1f7-25f3-43f5-a58a-d6aa0b71333f",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "114df0d7-a8e4-42a3-881a-2bc88a6ff754",
+						"type": "text/javascript",
+						"exec": [
+							"//getting bad request as the xml format varies for few calls and notes in confluence:They may be using the incorrect API WSDL, or they may need to use CDATA.//"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewCustomXMLTriggerRequest>\n         <tem:reqXML>\n                 <![CDATA[\n                 <TriggerBroadcast>\n                  <NewTrigger>\n                    <s_key>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</s_key>\n                    <s_optoff_check>N</s_optoff_check>\n                    <recipients>\n                      <recipient>\n                        <s_email>avanti.malkud@quickpivot.com</s_email>\n                        <attrib_values>\n                          <attrib>\n                            <name>FNAME</name>\n                            <value>JACK</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>MORIN</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>DOG</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>WHITE</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>YES</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/5/2017</value>\n                          </attrib>\n                        </attrib_values>\n                      </recipient>\n                    </recipients>\n                  </NewTrigger>\n                </TriggerBroadcast>\n                ]]>\n                </tem:reqXML>\n      </tem:NewCustomXMLTriggerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewTrigger",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cbd9d0b6-1b7a-4676-8d7e-a4796e97c7a4",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var NewTriggerResult=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"NewTriggerResponse\"][\"NewTriggerResult\"];",
+							"console.log(NewTriggerResult);",
+							"",
+							"//Joel commented out code block below",
+							"/*pm.test(\"NewTriggerResult is DONE\", function () {",
+							"       pm.expect(NewTriggerResult).to.eql(\"DONE\");  ",
+							"});",
+							"*/"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6421866d-63d4-4397-86bb-b620b7061754",
+						"type": "text/javascript",
+						"exec": [
+							"//This call creates a new requestid everytime when a call is made. So did not add the pm.environment// "
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewTrigger>\n         <!--Optional:-->\n         <tem:triggerKey>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</tem:triggerKey>\n         <!--Optional:-->\n         <tem:email>qamalkud@gmail.com</tem:email>\n         <!--Optional:-->\n         <tem:optoffCheck>N</tem:optoffCheck>\n         <tem:iPrevBcastid>0</tem:iPrevBcastid>\n         <tem:iPrevCid>0</tem:iPrevCid>\n         <!--Optional:-->\n         <tem:attribValues>\n            <attrib>\n            \t<name>FNAME</name>\n                 <value>JOHN</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>LYOD</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>BIRD</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>BLACK</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>NO</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/3/2017</value>\n                          </attrib>\n            <tem:string>?</tem:string>\n         </tem:attribValues>\n      </tem:NewTrigger>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewTriggerEntry",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08d0bbba-6b37-46b1-8c71-e8c96752b962",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var NewTriggerEntryResult=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"NewTriggerEntryResponse\"][\"NewTriggerEntryResult\"];",
+							"console.log(NewTriggerEntryResult);",
+							"",
+							"pm.test(\"NewTriggerEntryResult is True\", function () {",
+							"       pm.expect(NewTriggerEntryResult).to.eql(\"True\");  ",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewTriggerEntry>\n         <!--Optional:-->\n         <tem:triggerKey>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</tem:triggerKey>\n         <!--Optional:-->\n         <tem:email>malkudqa@gmail.com</tem:email>\n         <!--Optional:-->\n         <tem:optoffCheck>N</tem:optoffCheck>\n         <tem:iPrevBcastid>0</tem:iPrevBcastid>\n         <tem:iPrevCid>0</tem:iPrevCid>\n         <!--Optional:-->\n         <tem:attribValues>\n            <attrib_values>\n                          <attrib>\n                            <name>FNAME</name>\n                            <value>JACK</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>MORIN</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>DOG</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>WHITE</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>YES</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/5/2017</value>\n                          </attrib>\n                        </attrib_values>\n            <tem:string>Y</tem:string>\n         </tem:attribValues>\n      </tem:NewTriggerEntry>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewTriggerEntrySimple",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "51ea7212-0fc0-428c-af72-b5770a72eb90",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "53adfb02-e1d8-43eb-96cf-f678722e8601",
+						"type": "text/javascript",
+						"exec": [
+							"//getting bad request as the xml format varies for few calls and notes in confluence:They may be using the incorrect API WSDL, or they may need to use CDATA.//"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewTriggerEntrySimple>\n         <!--Optional:-->\n         <tem:reqXML>\n         \t<![CDATA[\n                 <TriggerBroadcast>\n                  <NewTrigger>\n                    <s_key>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</s_key>\n                    <s_optoff_check>N</s_optoff_check>\n                    <recipients>\n                      <recipient>\n                        <s_email>testingqa217@gmail.com</s_email>\n                        <attrib_values>\n                          <attrib>\n                            <name>FNAME</name>\n                            <value>JAMES</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>REYNOLDS</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>DOG</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>WHITE</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>YES</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/2/2017</value>\n                          </attrib>\n                        </attrib_values>\n                      </recipient>\n                    </recipients>\n                  </NewTrigger>\n                </TriggerBroadcast>\n                ]]>\n                </tem:reqXML>\n      </tem:NewTriggerEntrySimple>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewTriggerEntrySimpleWithTableName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10d3fd25-a17e-42e4-9da4-aaae984f7eae",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e2982e5e-8b5f-4d66-a810-f6bfaed4c5ae",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewTriggerEntrySimpleWithTablename>\n         <!--Optional:-->\n         <tem:triggerKey>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</tem:triggerKey>\n         <!--Optional:-->\n         <tem:email>joel.fogue@quickpivot.com</tem:email>\n         <!--Optional:-->\n         <tem:optoffCheck>N</tem:optoffCheck>\n         <!--Optional:-->\n         <tem:attribValues><attrib_values>\n                          <attrib>\n                            <name>FNAME</name>\n                            <value>JACK</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>MORIN</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>DOG</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>WHITE</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>YES</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/5/2017</value>\n                          </attrib>\n                        </attrib_values></tem:attribValues>\n         <!--Optional:-->\n         <tem:tableName>LM_62_1038703_TXT</tem:tableName>\n      </tem:NewTriggerEntrySimpleWithTablename>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewXMLTriggerRequest",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ca76cb62-6339-48af-9a28-fcc71c29c123",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var triggerResponseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"",
+							"var NewXMLTriggerRequestResult=triggerResponseBody[\"soap:Envelope\"][\"soap:Body\"][\"NewXMLTriggerRequestResponse\"][\"NewXMLTriggerRequestResult\"];",
+							"console.log(NewXMLTriggerRequestResult);",
+							"",
+							"var successMsg = NewXMLTriggerRequestResult.split(\":\")[0];",
+							"",
+							"pm.test(\"successMsg is Success\", function () {",
+							"   pm.expect(successMsg.trim()).to.eql(\"SUCCESS\");  ",
+							"});",
+							"",
+							"",
+							"",
+							"//pm.test(\"NewXMLTriggerRequestResult is SUCCESS\", function () {",
+							" //      pm.expect(NewXMLTriggerRequestResult).to.eql(\"SUCCESS\");  ",
+							"//});",
+							"//",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:NewXMLTriggerRequest>\n         <!--Optional:-->\n         <tem:reqXML>\n         \t<![CDATA[\n                 <TriggerBroadcast>\n                  <NewTrigger>\n                    <s_key>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</s_key>\n                    <s_optoff_check>N</s_optoff_check>\n                    <recipients>\n                      <recipient>\n                        <s_email>testingqa217@gmail.com</s_email>\n                        <attrib_values>\n                          <attrib>\n                            <name>FNAME</name>\n                            <value>JAMES</value>\n                          </attrib>\n                          <attrib>\n                            <name>LNAME</name>\n                            <value>REYNOLDS</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PET</name>\n                            <value>DOG</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>COLOR</name>\n                            <value>WHITE</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>GENDER</name>\n                            <value>M</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>AGE</name>\n                            <value>30</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>PURCHASED</name>\n                            <value>YES</value>\n                          </attrib>\n\t\t\t\t\t\t  <attrib>\n                            <name>DATE</name>\n                            <value>10/2/2017</value>\n                          </attrib>\n                        </attrib_values>\n                      </recipient>\n                    </recipients>\n                  </NewTrigger>\n                </TriggerBroadcast>\n                ]]>\n                </tem:reqXML>\n      </tem:NewXMLTriggerRequest>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetTriggerStatusToNEW",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0ab8c419-55ca-4788-a074-93a70a14e8ca",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"var responseBody = xml2Json(responseBody);",
+							"console.log(responseBody);",
+							"",
+							"var SetTriggerStatusToNEWResult=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"SetTriggerStatusToNEWResponse\"][\"SetTriggerStatusToNEWResult\"];",
+							"console.log(SetTriggerStatusToNEWResult);",
+							"",
+							"pm.test(\"SetTriggerStatusToNEWResult is SUCCESS\", function () {",
+							"       pm.expect(SetTriggerStatusToNEWResult).to.eql(\"SUCCESS\");  ",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\n   <soapenv:Header/>\n   <soapenv:Body>\n      <tem:SetTriggerStatusToNEW>\n         <!--Optional:-->\n         <tem:requestID>252239</tem:requestID>\n         <!--Optional:-->\n         <tem:triggerKey>UHb9WmlqN3dOh4mQGBvyViFQmGiZK8TxZ+L0KThPFn0=</tem:triggerKey>\n      </tem:SetTriggerStatusToNEW>\n   </soapenv:Body>\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "http://betanav.smart-login.net/betaws/WS_SS_TriggerBroadcast/TriggerBroadcast.asmx",
+					"protocol": "http",
+					"host": [
+						"betanav",
+						"smart-login",
+						"net"
+					],
+					"path": [
+						"betaws",
+						"WS_SS_TriggerBroadcast",
+						"TriggerBroadcast.asmx"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

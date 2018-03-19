@@ -1,0 +1,2835 @@
+{
+	"info": {
+		"name": "Data Manager",
+		"_postman_id": "e8771da2-bfa5-6ec2-0494-c41a64d5f28b",
+		"description": "This collection includes all the api calls for Data Manager",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Flow 1",
+			"description": "This flow includes the following:\n1. Upload New List\n2. Check the status for uploaded list\n3. Delete the uploaded list",
+			"item": [
+				{
+					"name": "UploadNewList",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa9ef2bd-5f05-4cce-86ae-6c82799e0562",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var responseBody = xml2Json(responseBody);",
+									"console.log(responseBody);",
+									"",
+									"var ListStatusOK=responseBody[\"soap:Envelope\"][\"soap:Body\"][\"UploadNewListResponse\"][\"UploadNewListResult\"][\"Response\"][\"$\"][\"status\"];",
+									"console.log(ListStatusOK);",
+									"",
+									"pm.test(\"Status is OK\", function () {",
+									"       pm.expect(ListStatusOK).to.eql(\"OK\");  ",
+									"});",
+									"",
+									"var ListID = responseBody[\"soap:Envelope\"][\"soap:Body\"][\"UploadNewListResponse\"][\"UploadNewListResult\"][\"Response\"][\"Request\"][\"$\"][\"id\"];",
+									"console.log(ListID);",
+									"pm.environment.set(\"ListID\", ListID);"
+								]
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6420261e-e4f3-4b8e-adc4-53ceb2a3176e",
+								"type": "text/javascript",
+								"exec": [
+									"pm.environment.set(\"Account_ID\", \"190\");",
+									"",
+									"pm.environment.set(\"List_Format\", \"TEXT\");",
+									"",
+									"pm.environment.set(\"List_Delimeter\", \",\");",
+									"",
+									"var randomNumberBetween0and100 = Math.floor(Math.random() * 1000000000);",
+									"var listname = \"ListName \"+randomNumberBetween0and100;",
+									"pm.environment.set(\"List_Name\", listname);",
+									"",
+									"pm.environment.set(\"Target_Folder_ID\", \"15359\");",
+									"",
+									"pm.environment.set(\"Email_Column\", \"Email\");",
+									"",
+									"//line numbers 7 and 8 are used in order to generate random file_id"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UploadNewList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>{{Account_ID}}</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>{{List_Format}}</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>{{List_Delimeter}}</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier></tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>{{List_Name}}</tem:s_ListName>\r\n         <!--Optional:-->\r\n         <tem:s_ListText>Email,FirstName,LastName,Pet||avanti.malkud@quickpivot.com,Spencer,Hastings,Dog||avantimalkud@yahoo.com,Hanna,Morin,Cat||malkudavanti@yahoo.com,Emily,Fields,Fish||malkudavanti@yahoo.com,Aria,Montgomery,Rabbit</tem:s_ListText>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>{{Target_Folder_ID}}</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_EmailColumn>{{Email_Column}}</tem:s_EmailColumn>\r\n      </tem:UploadNewList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+						},
+						"url": {
+							"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+							"protocol": "https",
+							"host": [
+								"wsm",
+								"messagemanager",
+								"net"
+							],
+							"path": [
+								"ws_ss_listmanagement",
+								"lists.asmx"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "CheckNewListRequestStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4d5d8e8b-b944-45c8-a68a-8f45a870eb0c",
+								"type": "text/javascript",
+								"exec": [
+									"/*var responseBody = xml2Json(responseBody);",
+									"console.log(responseBody);",
+									"",
+									"//to grab the status=OK",
+									"var StatusOK = responseBody[\"soap:Envelope\"][\"soap:Body\"][\"CheckNewListRequestStatusResponse\"][\"CheckNewListRequestStatusResult\"][\"Response\"][\"$\"][\"status\"];",
+									"console.log(StatusOK);",
+									"",
+									"//to grab the status (New/Available) of the list and print it out",
+									"var CurrentStatus = responseBody[\"soap:Envelope\"][\"soap:Body\"][\"CheckNewListRequestStatusResponse\"][\"CheckNewListRequestStatusResult\"][\"Response\"][\"Request\"][\"$\"][\"status\"];",
+									"console.log(CurrentStatus);",
+									"",
+									"//writing a test to check the status=OK",
+									"pm.test(\"Status is OK\", function () {",
+									"       pm.expect(StatusOK).to.eql(\"OK\");  ",
+									"});",
+									"",
+									"pm.test(\"Status is Available\", function () {",
+									"       pm.expect(CurrentStatus).to.eql(\"AVAILABLE\");  ",
+									"});",
+									"*/",
+									"",
+									"",
+									"function checkStatus(){",
+									"    var newListResponseBody = xml2Json(responseBody);",
+									"    var listUploadStatus = newListResponseBody[\"soap:Envelope\"][\"soap:Body\"][\"CheckNewListRequestStatusResponse\"][\"CheckNewListRequestStatusResult\"][\"Response\"][\"Request\"][\"$\"][\"status\"];",
+									"    return listUploadStatus;",
+									"    ",
+									"}",
+									"",
+									"function checkListUploadStatus(){",
+									"console.log(\"The passed-in ID is: \"+pm.environment.get(\"ListID\"));",
+									"var responseCode = pm.response.code;",
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(responseCode).to.be.oneOf([200]);",
+									"});",
+									"if(responseCode === 200){",
+									" try{",
+									"     //Grab the ID of the newly uploaded list",
+									"     var newListResponseBody = xml2Json(responseBody);",
+									"     console.log(newListResponseBody);",
+									"     //var ID = newListResponseBody[\"soap:Envelope\"][\"soap:Body\"][\"UploadNewListResponse\"][\"UploadNewListResult\"][\"Response\"][\"Request\"][\"$\"][\"id\"];",
+									"     var okStatus = newListResponseBody[\"soap:Envelope\"][\"soap:Body\"][\"CheckNewListRequestStatusResponse\"][\"CheckNewListRequestStatusResult\"][\"Response\"][\"$\"][\"status\"];",
+									"",
+									"     var listUploadStatus = newListResponseBody[\"soap:Envelope\"][\"soap:Body\"][\"CheckNewListRequestStatusResponse\"][\"CheckNewListRequestStatusResult\"][\"Response\"][\"Request\"][\"$\"][\"status\"];",
+									"",
+									"",
+									"    console.log(\"listUploadStatus: \"+listUploadStatus);",
+									"    ",
+									"    pm.test(\"Response body status is OK\", function () {",
+									"        pm.expect(okStatus).to.eql(\"OK\");",
+									"    });",
+									"    ",
+									"    var myStatus = checkStatus();",
+									"    if(myStatus ==\"NEW\"){",
+									"        setTimeout(function(){",
+									"            pm.test(\"ListUploadStatus is NEW\", function () {",
+									"                pm.expect(listUploadStatus).to.eql(\"NEW\");",
+									"            });",
+									"            console.log(\"List status should be [NEW] here\");",
+									"            //Calling itself so we can make the API request and check the list status again",
+									"            postman.setNextRequest(\"CheckNewListRequestStatus\");",
+									"        }, 30000);",
+									"    }else{",
+									"        console.log(\"List status should be [AVAILABLE] here\");",
+									"        //Assert that list status is AVAILABLE once the list becomes available eventually",
+									"        pm.test(\"ListUploadStatus is AVAILABLE\", function () {",
+									"            pm.expect(listUploadStatus).to.eql(\"AVAILABLE\");",
+									"        });",
+									"        postman.setNextRequest(\"DeleteList\");",
+									"    }",
+									" }catch(e){",
+									"    console.log(e);",
+									"    console.log(\"The response status wasn't OK, an error occured while performing this request\");",
+									"    throw false;",
+									" }   ",
+									"}",
+									"}",
+									"",
+									"checkListUploadStatus();",
+									"",
+									"",
+									"",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <soap:Body>\r\n    <CheckNewListRequestStatus xmlns=\"http://tempuri.org/\">\r\n      <s_UserGUID>{{GUID}}</s_UserGUID>\r\n      <i_List_ID>{{ListID}}</i_List_ID>\r\n    </CheckNewListRequestStatus>\r\n  </soap:Body>\r\n</soap:Envelope>"
+						},
+						"url": {
+							"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx?op=CheckNewListRequestStatus",
+							"protocol": "https",
+							"host": [
+								"wsm",
+								"messagemanager",
+								"net"
+							],
+							"path": [
+								"ws_ss_listmanagement",
+								"lists.asmx"
+							],
+							"query": [
+								{
+									"key": "op",
+									"value": "CheckNewListRequestStatus",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:DeleteList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Id>{{ListID}}</tem:i_Id>\r\n      </tem:DeleteList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+						},
+						"url": {
+							"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+							"protocol": "https",
+							"host": [
+								"wsm",
+								"messagemanager",
+								"net"
+							],
+							"path": [
+								"ws_ss_listmanagement",
+								"lists.asmx"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AddTableColumns",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fc81827e-4c51-4c48-8f4c-862b8c450c77",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 200ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(207);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AddTableColumns>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>83c00859-7bc6-423d-b31a-8a05f17ec68c</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>190</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Columns>FirstName</tem:s_Columns>\r\n         <!--Optional:-->\r\n         <tem:s_ListID>251414</tem:s_ListID>\r\n      </tem:AddTableColumns>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AddTableSystemColumns",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AddTableSystemColumns>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Columns>?</tem:s_Columns>\r\n         <!--Optional:-->\r\n         <tem:s_ListID>?</tem:s_ListID>\r\n         <tem:IsSystemColumn>?</tem:IsSystemColumn>\r\n      </tem:AddTableSystemColumns>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AppendList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "71f920de-9786-4611-8b15-b6b5f3dce741",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "99ba44cf-7ee3-4801-93a6-a1e360105aee",
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.environment.set(\"List_ID\", \"254644\");",
+							"",
+							"pm.environment.set(\"List_Format\", \"TEXT\");",
+							"",
+							"pm.environment.set(\"List_Delimeter\", \",\");",
+							"",
+							"",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AppendList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>{{List_ID}}</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>{{List_Format}}</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>{{List_Delimeter}}</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier></tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListText>Email,FirstName,LastName,Pet||qamalkud@yahoo.com,Michael,Watson,Bird||malkudqa@yahoo.com,Rory,Gilmore,Rabbit</tem:s_ListText>\r\n      </tem:AppendList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AppendListFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AppendListFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Path>?</tem:s_FTP_Path>\r\n      </tem:AppendListFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AppendUploadedList",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "964e9dc0-d06c-4e64-8897-86aab3c419f8",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"List_ID\", \"254644\");",
+							"",
+							"pm.environment.set(\"List_Format\", \"TEXT\");",
+							"",
+							"pm.environment.set(\"List_Delimeter\", \",\");",
+							"",
+							"",
+							"",
+							"",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "41c44ee8-f54e-4cc3-9fc8-9aece740de0a",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AppendUploadedList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>{{List_ID}}</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>{{List_Format}}</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>{{List_Delimeter}}</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier></tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FilePath></tem:s_FilePath>\r\n      </tem:AppendUploadedList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Blank Request",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:AddTableColumns>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID></tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>190</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Columns>Firstname</tem:s_Columns>\r\n         <!--Optional:-->\r\n         <tem:s_ListID>250610</tem:s_ListID>\r\n      </tem:AddTableColumns>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ApplySegment",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "6be3b32c-d369-40eb-b7d4-4f4132971de4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"Account_ID\", \"190\");",
+							"",
+							"pm.environment.set(\"List_ID\", \"254644\");",
+							"",
+							"pm.environment.set(\"Segment_ID\", \"18055\");",
+							"",
+							"pm.environment.set(\"Result_List_Name\", \"Rabbit List\");",
+							"",
+							"pm.environment.set(\"Result_Folder_ID\", \"15359\");"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "e8d50ec1-bb4c-4cc5-98ce-f9c6e836850c",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ApplySegment>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>{{Account_ID}}</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>{{List_ID}}</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>{{Segment_ID}}</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:i_ResultListName>{{Result_List_Name}}</tem:i_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_ResultfolderID>{{Result_Folder_ID}}</tem:i_ResultfolderID>\r\n      </tem:ApplySegment>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CheckExportListFTPRequestStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CheckExportListFTPRequestStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:CheckExportListFTPRequestStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CheckExportListStatus",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b23f4976-308d-42dc-973f-b3ca33967ae4",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c6a3980d-71a9-457a-b578-75ba3383303d",
+						"type": "text/javascript",
+						"exec": [
+							"pm.environment.set(\"Request_ID\", \"75277\");",
+							"",
+							"//status says New in postman initially whereas in the tool it says Pending//"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CheckExportListStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>{{Request_ID}}</tem:i_RequestID>\r\n      </tem:CheckExportListStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CheckGenerateListRequestStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CheckGenerateListRequestStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:CheckGenerateListRequestStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CheckGenerateSplitListRequestStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CheckGenerateSplitListRequestStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:CheckGenerateSplitListRequestStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CheckUpdateOrAppendOrReplaceListRequestStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CheckUpdateOrAppendOrReplaceListRequestStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_RequestID>?</tem:i_RequestID>\r\n      </tem:CheckUpdateOrAppendOrReplaceListRequestStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CopyList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CopyList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>83c00859-7bc6-423d-b31a-8a05f17ec68c</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>190</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>251414</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_NewFolderID>15359</tem:i_NewFolderID>\r\n      </tem:CopyList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateFolder",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CreateFolder>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_FolderName>?</tem:s_FolderName>\r\n         <!--Optional:-->\r\n         <tem:i_ParentFolderID>?</tem:i_ParentFolderID>\r\n         <!--Optional:-->\r\n         <tem:i_RetentionPolicy>?</tem:i_RetentionPolicy>\r\n      </tem:CreateFolder>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewSegment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CreateNewSegment>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_segmentName>?</tem:s_segmentName>\r\n         <!--Optional:-->\r\n         <tem:s_Json>?</tem:s_Json>\r\n         <!--Optional:-->\r\n         <tem:s_folderId>?</tem:s_folderId>\r\n         <!--Optional:-->\r\n         <tem:s_Access>?</tem:s_Access>\r\n         <!--Optional:-->\r\n         <tem:i_listId>?</tem:i_listId>\r\n         <!--Optional:-->\r\n         <tem:i_queryId>?</tem:i_queryId>\r\n      </tem:CreateNewSegment>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNewView",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CreateNewView>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_ViewName>?</tem:s_ViewName>\r\n         <!--Optional:-->\r\n         <tem:s_ViewJson>?</tem:s_ViewJson>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_Access>?</tem:s_Access>\r\n         <!--Optional:-->\r\n         <tem:i_ViewID>?</tem:i_ViewID>\r\n      </tem:CreateNewView>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "CreateSegment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:CreateSegment>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_SegmentName>?</tem:s_SegmentName>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_SegmentParamXML>?</tem:s_SegmentParamXML>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n      </tem:CreateSegment>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "EmailLookup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:EmailLookup>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Email>?</tem:s_Email>\r\n         <!--Optional:-->\r\n         <tem:s_DateRangeMMDDYYYYTOMMDDYYYY>?</tem:s_DateRangeMMDDYYYYTOMMDDYYYY>\r\n         <!--Optional:-->\r\n         <tem:i_PageIndex>?</tem:i_PageIndex>\r\n         <!--Optional:-->\r\n         <tem:i_Count>?</tem:i_Count>\r\n      </tem:EmailLookup>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>83c00859-7bc6-423d-b31a-8a05f17ec68c</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>250610</tem:i_List_ID>\r\n      </tem:ExportList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportListToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportListToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ExportListToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportSegment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportSegment>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Xml>?</tem:s_Xml>\r\n      </tem:ExportSegment>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportSegmentToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportSegmentToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Xml>?</tem:s_Xml>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ExportSegmentToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportSet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportSet>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Xml>?</tem:s_Xml>\r\n      </tem:ExportSet>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ExportSetToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ExportSetToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Xml>?</tem:s_Xml>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ExportSetToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GenerateList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>?</tem:s_ListName>\r\n         <!--Optional:-->\r\n         <tem:s_Type>?</tem:s_Type>\r\n         <!--Optional:-->\r\n         <tem:s_Xml>?</tem:s_Xml>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n      </tem:GenerateList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GenerateSplitList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GenerateSplitList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_ListID>?</tem:s_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_SplitName>?</tem:s_SplitName>\r\n         <!--Optional:-->\r\n         <tem:s_SplitType>?</tem:s_SplitType>\r\n         <!--Optional:-->\r\n         <tem:i_NoOfSplits>?</tem:i_NoOfSplits>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderId>?</tem:i_TargetFolderId>\r\n      </tem:GenerateSplitList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderContent",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetFolderContent>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_FolderID>?</tem:i_FolderID>\r\n         <!--Optional:-->\r\n         <tem:i_AccountID>?</tem:i_AccountID>\r\n      </tem:GetFolderContent>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetFolderDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_FolderID>?</tem:i_FolderID>\r\n      </tem:GetFolderDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderIDsByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetFolderIDsByName>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_FolderName>?</tem:s_FolderName>\r\n      </tem:GetFolderIDsByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetFolderTree",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetFolderTree>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n      </tem:GetFolderTree>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetListColumnDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetListColumnDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n      </tem:GetListColumnDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetListCount",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetListCount>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n      </tem:GetListCount>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetListDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetListDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n      </tem:GetListDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetListIDByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetListIDByName>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>?</tem:s_ListName>\r\n      </tem:GetListIDByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetListPrepStatus",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetListPrepStatus>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ListId>?</tem:i_ListId>\r\n      </tem:GetListPrepStatus>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetPrepReportXml",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetPrepReportXml>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n      </tem:GetPrepReportXml>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSegmentDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSegmentDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Segment_ID>?</tem:i_Segment_ID>\r\n      </tem:GetSegmentDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSegmentIDByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSegmentIDByName>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_SegmentName>?</tem:s_SegmentName>\r\n      </tem:GetSegmentIDByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSegmentParameterList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSegmentParameterList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n      </tem:GetSegmentParameterList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSetDetails",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSetDetails>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Set_ID>?</tem:i_Set_ID>\r\n      </tem:GetSetDetails>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSetIDByName",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSetIDByName>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_SetName>?</tem:s_SetName>\r\n      </tem:GetSetIDByName>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetSetParameterList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetSetParameterList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n      </tem:GetSetParameterList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "GetWhereUsed",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:GetWhereUsed>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:i_ID>?</tem:i_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Type>?</tem:s_Type>\r\n      </tem:GetWhereUsed>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "InsertUpdateDMRecord",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:InsertUpdateDMRecord>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListID>?</tem:s_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_ListDataXml>?</tem:s_ListDataXml>\r\n      </tem:InsertUpdateDMRecord>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LoadLargeUploadList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:LoadLargeUploadList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_RowDelimiter>?</tem:s_RowDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ColumnNames>?</tem:s_ColumnNames>\r\n         <!--Optional:-->\r\n         <tem:s_FileName>?</tem:s_FileName>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_FilePath>?</tem:s_FilePath>\r\n         <!--Optional:-->\r\n         <tem:s_EmailColumn>?</tem:s_EmailColumn>\r\n      </tem:LoadLargeUploadList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "LoadUploadedList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:LoadUploadedList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FileName>?</tem:s_FileName>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_FilePath>?</tem:s_FilePath>\r\n         <!--Optional:-->\r\n         <tem:s_EmailColumn>?</tem:s_EmailColumn>\r\n      </tem:LoadUploadedList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "MoveList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:MoveList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_NewFolderID>?</tem:i_NewFolderID>\r\n      </tem:MoveList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OptIn",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OptIn>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:Email>?</tem:Email>\r\n      </tem:OptIn>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "OptOut",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:OptOut>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <!--Optional:-->\r\n         <tem:s_Sender>?</tem:s_Sender>\r\n         <!--Optional:-->\r\n         <tem:Email>?</tem:Email>\r\n      </tem:OptOut>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PrepList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:PrepList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>?</tem:s_ListName>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_SenderID>?</tem:i_SenderID>\r\n         <!--Optional:-->\r\n         <tem:b_DeDup>?</tem:b_DeDup>\r\n         <!--Optional:-->\r\n         <tem:s_DeDupColumnName>?</tem:s_DeDupColumnName>\r\n         <!--Optional:-->\r\n         <tem:b_GlobalSuppression>?</tem:b_GlobalSuppression>\r\n         <!--Optional:-->\r\n         <tem:b_DomainSuppression>?</tem:b_DomainSuppression>\r\n         <!--Optional:-->\r\n         <tem:b_MailboxSuppression>?</tem:b_MailboxSuppression>\r\n         <!--Optional:-->\r\n         <tem:b_BounceOut>?</tem:b_BounceOut>\r\n         <!--Optional:-->\r\n         <tem:b_WirelessSuppression>?</tem:b_WirelessSuppression>\r\n         <!--Optional:-->\r\n         <tem:b_AccountWideEmailSuppression>?</tem:b_AccountWideEmailSuppression>\r\n         <!--Optional:-->\r\n         <tem:b_FPSuppression>?</tem:b_FPSuppression>\r\n      </tem:PrepList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ReplaceList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ReplaceList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:b_UseCountToConfirm>?</tem:b_UseCountToConfirm>\r\n         <!--Optional:-->\r\n         <tem:i_count>?</tem:i_count>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListText>?</tem:s_ListText>\r\n      </tem:ReplaceList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ReplaceListFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ReplaceListFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:b_UseCountToConfirm>?</tem:b_UseCountToConfirm>\r\n         <!--Optional:-->\r\n         <tem:i_count>?</tem:i_count>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Path>?</tem:s_FTP_Path>\r\n      </tem:ReplaceListFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ReplaceUploadedList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ReplaceUploadedList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:b_UseCountToConfirm>?</tem:b_UseCountToConfirm>\r\n         <!--Optional:-->\r\n         <tem:i_count>?</tem:i_count>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FilePath>?</tem:s_FilePath>\r\n      </tem:ReplaceUploadedList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Resubscribe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:Resubscribe>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:s_Account>?</tem:s_Account>\r\n         <tem:i_Sender>?</tem:i_Sender>\r\n         <!--Optional:-->\r\n         <tem:Email>?</tem:Email>\r\n         <!--Optional:-->\r\n         <tem:optindate>?</tem:optindate>\r\n         <!--Optional:-->\r\n         <tem:source>?</tem:source>\r\n      </tem:Resubscribe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListDayExport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListDayExport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatAfterThisNoofdays>?</tem:i_RepeatAfterThisNoofdays>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleListDayExport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListDayExportToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListDayExportToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatAfterThisNoofdays>?</tem:i_RepeatAfterThisNoofdays>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleListDayExportToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListMonthExport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListMonthExport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_Months>?</tem:s_Months>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisWeekOfTheMonth>?</tem:s_OnThisWeekOfTheMonth>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisDayOfThatWeek>?</tem:s_OnThisDayOfThatWeek>\r\n         <!--Optional:-->\r\n         <tem:s_OnCalendarDay>?</tem:s_OnCalendarDay>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleListMonthExport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListMonthExportToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListMonthExportToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_Months>?</tem:s_Months>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisWeekOfTheMonth>?</tem:s_OnThisWeekOfTheMonth>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisDayOfThatWeek>?</tem:s_OnThisDayOfThatWeek>\r\n         <!--Optional:-->\r\n         <tem:s_OnCalendarDay>?</tem:s_OnCalendarDay>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleListMonthExportToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListOnceExport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListOnceExport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n      </tem:ScheduleListOnceExport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListOnceExportToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListOnceExportToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleListOnceExportToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListWeekExport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListWeekExport>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatSegmentRunAfterNoOfWeeks>?</tem:i_RepeatSegmentRunAfterNoOfWeeks>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleListWeekExport>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleListWeekExportToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleListWeekExportToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatSegmentRunAfterNoOfWeeks>?</tem:i_RepeatSegmentRunAfterNoOfWeeks>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleListWeekExportToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentDay",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentDay>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_ResultfolderID>?</tem:i_ResultfolderID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatAfterThisNoofdays>?</tem:i_RepeatAfterThisNoofdays>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleSegmentDay>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentDayToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentDayToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatAfterThisNoofdays>?</tem:i_RepeatAfterThisNoofdays>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleSegmentDayToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentMonth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentMonth>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_ResultfolderID>?</tem:i_ResultfolderID>\r\n         <!--Optional:-->\r\n         <tem:s_Months>?</tem:s_Months>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisWeekOfTheMonth>?</tem:s_OnThisWeekOfTheMonth>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisDayOfThatWeek>?</tem:s_OnThisDayOfThatWeek>\r\n         <!--Optional:-->\r\n         <tem:s_OnCalendarDay>?</tem:s_OnCalendarDay>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleSegmentMonth>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentMonthToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentMonthToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_Months>?</tem:s_Months>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisWeekOfTheMonth>?</tem:s_OnThisWeekOfTheMonth>\r\n         <!--Optional:-->\r\n         <tem:s_OnThisDayOfThatWeek>?</tem:s_OnThisDayOfThatWeek>\r\n         <!--Optional:-->\r\n         <tem:s_OnCalendarDay>?</tem:s_OnCalendarDay>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleSegmentMonthToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentOnce",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentOnce>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_ResultfolderID>?</tem:i_ResultfolderID>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n      </tem:ScheduleSegmentOnce>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentOnceToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentOnceToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleSegmentOnceToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentWeek",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentWeek>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_ResultfolderID>?</tem:i_ResultfolderID>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatSegmentRunAfterNoOfWeeks>?</tem:i_RepeatSegmentRunAfterNoOfWeeks>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n      </tem:ScheduleSegmentWeek>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ScheduleSegmentWeekToFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ScheduleSegmentWeekToFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:i_SegmentID>?</tem:i_SegmentID>\r\n         <!--Optional:-->\r\n         <tem:s_ResultListName>?</tem:s_ResultListName>\r\n         <!--Optional:-->\r\n         <tem:i_RepeatAfterThisNoofdays>?</tem:i_RepeatAfterThisNoofdays>\r\n         <!--Optional:-->\r\n         <tem:s_OnTheFollowingDays>?</tem:s_OnTheFollowingDays>\r\n         <!--Optional:-->\r\n         <tem:s_Everyweekday>?</tem:s_Everyweekday>\r\n         <!--Optional:-->\r\n         <tem:t_StartingAt>?</tem:t_StartingAt>\r\n         <!--Optional:-->\r\n         <tem:d_StartingOn>?</tem:d_StartingOn>\r\n         <!--Optional:-->\r\n         <tem:d_EndingOn>?</tem:d_EndingOn>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Folder_Path>?</tem:s_FTP_Folder_Path>\r\n      </tem:ScheduleSegmentWeekToFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "SendPrepReportEmail",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:SendPrepReportEmail>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n         <!--Optional:-->\r\n         <tem:s_EmailAddresses>?</tem:s_EmailAddresses>\r\n      </tem:SendPrepReportEmail>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "TestMe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:TestMe>\r\n         <!--Optional:-->\r\n         <tem:s_AccountCode>?</tem:s_AccountCode>\r\n      </tem:TestMe>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UpdateList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>{{GUID}}</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>255351</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>TEXT</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>,</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier></tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListText>Email,FirstName,LastName,Pet||keith.berube@quickpivot.com,Keith,Berube,Dog</tem:s_ListText>\r\n      </tem:UpdateList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateListFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UpdateListFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Path>?</tem:s_FTP_Path>\r\n      </tem:UpdateListFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUploadedList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UpdateUploadedList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_List_ID>?</tem:i_List_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_FilePath>?</tem:s_FilePath>\r\n      </tem:UpdateUploadedList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UploadNewListFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UploadNewListFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>?</tem:s_ListName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Path>?</tem:s_FTP_Path>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_EmailColumn>?</tem:s_EmailColumn>\r\n      </tem:UploadNewListFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "UploadZipFileFromFTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:UploadZipFileFromFTP>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_Account_ID>?</tem:i_Account_ID>\r\n         <!--Optional:-->\r\n         <tem:s_ListFormat>?</tem:s_ListFormat>\r\n         <!--Optional:-->\r\n         <tem:s_ListDelimiter>?</tem:s_ListDelimiter>\r\n         <!--Optional:-->\r\n         <tem:s_ListQualifier>?</tem:s_ListQualifier>\r\n         <!--Optional:-->\r\n         <tem:s_ListName>?</tem:s_ListName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_URL>?</tem:s_FTP_URL>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_UName>?</tem:s_FTP_UName>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_PW>?</tem:s_FTP_PW>\r\n         <!--Optional:-->\r\n         <tem:s_FTP_Path>?</tem:s_FTP_Path>\r\n         <!--Optional:-->\r\n         <tem:s_FileName>?</tem:s_FileName>\r\n         <!--Optional:-->\r\n         <tem:i_TargetFolderID>?</tem:i_TargetFolderID>\r\n         <!--Optional:-->\r\n         <tem:s_EmailColumn>?</tem:s_EmailColumn>\r\n      </tem:UploadZipFileFromFTP>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "ViewList",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:tem=\"http://tempuri.org/\">\r\n   <soapenv:Header/>\r\n   <soapenv:Body>\r\n      <tem:ViewList>\r\n         <!--Optional:-->\r\n         <tem:s_UserGUID>?</tem:s_UserGUID>\r\n         <!--Optional:-->\r\n         <tem:i_ListID>?</tem:i_ListID>\r\n      </tem:ViewList>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>"
+				},
+				"url": {
+					"raw": "https://wsm.messagemanager.net/ws_ss_listmanagement/lists.asmx",
+					"protocol": "https",
+					"host": [
+						"wsm",
+						"messagemanager",
+						"net"
+					],
+					"path": [
+						"ws_ss_listmanagement",
+						"lists.asmx"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
