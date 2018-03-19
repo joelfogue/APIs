@@ -38,6 +38,11 @@ pipeline {
             
           }
         }
+        stage('FTP API Tests') {
+          steps {
+            bat 'npm run ftp-tests'
+          }
+        }
       }
     }
     stage('Reporting Tests Results') {
