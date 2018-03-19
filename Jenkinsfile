@@ -13,5 +13,10 @@ pipeline {
         bat 'newman --version'
       }
     }
+    stage('Clean') {
+      steps {
+        bat 'if exist newman_reports rd /s /q newman_reports'
+      }
+    }
   }
 }
