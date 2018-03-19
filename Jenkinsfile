@@ -25,7 +25,6 @@ pipeline {
           steps {
             catchError() {
               bat 'npm run trigger-tests'
-              bat 'currentBuild.result = \'SUCCESS\''
             }
             
           }
@@ -35,7 +34,6 @@ pipeline {
           steps {
             catchError() {
               bat 'npm run mm-tests'
-              bat 'currentBuild.result = \'SUCCESS\''
             }
             
           }
