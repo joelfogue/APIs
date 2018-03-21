@@ -18,31 +18,9 @@ pipeline {
         bat 'if exist newman_reports rd /s /q newman_reports'
       }
     }
-    stage('Running Trigger API Tests') {
-      parallel {
-        stage('Running Trigger API Tests') {
-          agent any
-          steps {
-            catchError() {
-              bat 'npm run trigger-tests'
-            }
-            
-          }
-        }
-        stage('Running MM API Tests') {
-          agent any
-          steps {
-            catchError() {
-              bat 'npm run mm-tests'
-            }
-            
-          }
-        }
-        stage('FTP API Tests') {
-          steps {
-            bat 'npm run ftp-tests'
-          }
-        }
+    stage('FTP API Tests') {
+      steps {
+        bat 'npm run ftp-tests'
       }
     }
     stage('Reporting Tests Results') {
