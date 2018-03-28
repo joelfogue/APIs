@@ -19,8 +19,17 @@ pipeline {
       }
     }
     stage('FTP API Tests') {
-      steps {
-        bat 'npm run ftp-tests'
+      parallel {
+        stage('FTP API Tests') {
+          steps {
+            bat 'npm run ftp-tests'
+          }
+        }
+        stage('') {
+          steps {
+            bat 'npm run mm-tests'
+          }
+        }
       }
     }
     stage('Reporting Tests Results') {
