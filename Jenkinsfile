@@ -25,7 +25,7 @@ pipeline {
             bat 'npm run ftp-tests'
           }
         }
-        stage('') {
+        stage('error') {
           steps {
             bat 'npm run mm-tests'
           }
