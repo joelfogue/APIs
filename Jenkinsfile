@@ -18,16 +18,21 @@ pipeline {
         bat 'if exist newman_reports rd /s /q newman_reports'
       }
     }
-    stage('FTP API Tests') {
+    stage('RUNNING API TESTS') {
       parallel {
         stage('FTP API Tests') {
           steps {
             bat 'npm run ftp-tests'
           }
         }
-        stage('error') {
+        stage('MM API TESTS') {
           steps {
             bat 'npm run mm-tests'
+          }
+        }
+         stage('TRIGGER API TESTS') {
+          steps {
+            bat 'npm run trigger-tests'
           }
         }
       }
